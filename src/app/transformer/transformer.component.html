@@ -1,0 +1,42 @@
+<main class="main">
+  <div>
+    <div style="text-align: center" class="add-margin-top">
+    <h1>Kata Application</h1>
+      <button class="btn btn-lg btn-outline-primary add-margin-top" (click)="open(content)">
+        Launch
+      </button>
+      <br>
+      <div *ngIf="isLoading" class="spinner-border text-primary add-margin-top" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+    <br>
+    <div *ngIf="isResultReceived" class="alert alert-success add-margin-top" role="alert">
+      The result is : {{ result }}
+    </div>
+    <div *ngIf="isShowError" class="alert alert-danger add-margin-top" role="alert">
+      Error during number transformation to text !!
+    </div>
+
+    <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label >Please enter a number
+              <input type="number" id="num" [formControl]="numValue">
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary"
+                [disabled]="!numValue.valid"
+                (click)="modal.close('Save click')">Save</button>
+      </div>
+    </ng-template>
+  </div>
+</main>
